@@ -1,0 +1,59 @@
+{% extends 'server_ui/templates/base.html' %}
+{% block title %}{{ settings.SITE_TITLE }}{% endblock %}
+
+{% block header %}
+<h2>{{ settings.SITE_TITLE }}</h2>
+{% endblock %}
+
+{% block content %}
+<div class="row" style="margin-top: 40px;">
+  <div class="large-8 columns large-centered text-center">
+    <img src="{{ settings.MAIN_LOGO_URL }}" style="max-width: 220px; margin-bottom: 20px;" />
+    <h2 style="margin-bottom: 10px;">Bem-vindo ao sistema de eleições da <b>{{ settings.SITE_TITLE }}</b></h2>
+    <p style="font-size: 1.3em; color: #444;">{{settings.WELCOME_MESSAGE|safe}}</p>
+    {% if elections|length == 0 %}
+      <h4 style="margin-top: 30px; color: #c00;">Nenhuma eleição disponível no momento</h4>
+    {% endif %}
+    {% if create_p %}
+      <a class="button large" style="margin-top: 30px; margin-bottom: 30px;" href="{% url "elections@new" %}">+ Criar nova eleição</a>
+    {% endif %}
+  </div>
+</div>
+
+<div class="row" style="margin-top: 30px;">
+  <div class="large-4 columns">
+    <div class="panel">
+      <h5 class="subheader">Administração</h5>
+      {% if elections_administered %}
+        <ul>
+          {% for election in elections_administered %}
+            <li><a href="{% url "election@view" election.uuid %}">{{election.name}}</a></li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <em>Você ainda não criou nenhuma eleição.</em>
+      {% endif %}
+      <div class="row right" style="margin-top: 10px;">
+        <a class="tiny button" href="{% url "elections@administered" %}">ver todas</a>
+      </div>
+    </div>
+  </div>
+  <div class="large-4 columns">
+    <div class="panel">
+      <h5 class="subheader">Votos Recentes</h5>
+      {% if elections_voted %}
+        <ul>
+          {% for election in elections_voted %}
+            <li><a href="{% url "election@view" election.uuid %}">{{election.name}}</a></li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <em>Você ainda não votou em nenhuma eleição.</em>
+      {% endif %}
+      <div class="row right" style="margin-top: 10px;">
+        <a class="tiny button" href="{% url "elections@voted" %}">ver todas</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
