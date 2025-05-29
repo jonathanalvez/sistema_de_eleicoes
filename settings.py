@@ -165,41 +165,32 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'anymail',
     ## HELIOS stuff
     'helios_auth',
     'helios',
     'server_ui',
 )
 
-ANYMAIL = {
-    "MAILGUN_API_KEY": get_from_env('MAILGUN_API_KEY', None),
-    "MAILGUN_SENDER_DOMAIN": get_from_env('MAILGUN_SENDER_DOMAIN', None),
-    "MAILGUN_API_URL": "https://api.mailgun.net/v3",
-}
-
-if ANYMAIL["MAILGUN_API_KEY"]:
-    EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-    # Configurações padrão de email
-    EMAIL_HOST = 'smtp.mailgun.org'
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
+# Configuração de Email da Hostinger
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = get_from_env('EMAIL_HOST', 'smtp.hostinger.com')
+EMAIL_PORT = int(get_from_env('EMAIL_PORT', '587'))
+EMAIL_USE_TLS = get_from_env('EMAIL_USE_TLS', '1') == '1'
+EMAIL_USE_SSL = get_from_env('EMAIL_USE_SSL', '0') == '1'
+EMAIL_HOST_USER = get_from_env('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = get_from_env('EMAIL_HOST_PASSWORD', '')
+DEFAULT_FROM_EMAIL = get_from_env('DEFAULT_FROM_EMAIL', '')
+DEFAULT_FROM_NAME = get_from_env('DEFAULT_FROM_NAME', '')
+SERVER_EMAIL = '%s <%s>' % (DEFAULT_FROM_NAME, DEFAULT_FROM_EMAIL)
 
 ##
 ## HELIOS
 ##
 
-
 MEDIA_ROOT = ROOT_PATH + "media/"
 
 # a relative path where voter upload files are stored
 VOTER_UPLOAD_REL_PATH = "voters/%Y/%m/%d"
-
-
-# Change your email settings
-DEFAULT_FROM_EMAIL = get_from_env('DEFAULT_FROM_EMAIL', 'jonathan.alvez.develop@gmail.com')
-DEFAULT_FROM_NAME = get_from_env('DEFAULT_FROM_NAME', 'Jonthan')
-SERVER_EMAIL = '%s <%s>' % (DEFAULT_FROM_NAME, DEFAULT_FROM_EMAIL)
 
 LOGIN_URL = '/auth/'
 LOGOUT_ON_CONFIRMATION = True
@@ -278,13 +269,6 @@ CLEVER_CLIENT_SECRET = get_from_env('CLEVER_CLIENT_SECRET', "")
 GH_CLIENT_ID = get_from_env('GH_CLIENT_ID', '')
 GH_CLIENT_SECRET = get_from_env('GH_CLIENT_SECRET', '')
 
-# email server
-EMAIL_HOST = get_from_env('EMAIL_HOST', 'localhost')
-EMAIL_PORT = int(get_from_env('EMAIL_PORT', "2525"))
-EMAIL_HOST_USER = get_from_env('EMAIL_HOST_USER', '')
-EMAIL_HOST_PASSWORD = get_from_env('EMAIL_HOST_PASSWORD', '')
-EMAIL_USE_TLS = (get_from_env('EMAIL_USE_TLS', '0') == '1')
-
 # to use AWS Simple Email Service
 # in which case environment should contain
 # AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
@@ -300,10 +284,10 @@ logging.basicConfig(
 )
 
 # set up celery
-CELERY_BROKER_URL = get_from_env('CELERY_BROKER_URL', 'amqp://localhost')
-if TESTING:
-    CELERY_TASK_ALWAYS_EAGER = True
-#database_url = DATABASES['default']
+BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+CELERY_BROKER_URL = BROKER_URL
+CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_TASK_ALWAYS_EAGER = TESTING
 
 # Rollbar Error Logging
 ROLLBAR_ACCESS_TOKEN = get_from_env('ROLLBAR_ACCESS_TOKEN', None)

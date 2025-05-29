@@ -37,37 +37,37 @@ function check_sk(sk_value) {
 
     var reset_link = "<br /><a href='javascript:reset();'>try again</a>";
     if (key_ok_p) {
-      $('#result').html("your secret key matches!");
+      $('#result').html("sua chave secreta corresponde!");
     } else {
-      $('#result').html("OH OH, your key is bad." + reset_link);
+      $('#result').html("OH OH, sua chave está errada." + reset_link);
     }
 }
 </script>
-  <h2 class="title">{{election.name}} &mdash; Trustee {{trustee.name}} &mdash; Check Secret Key <span style="font-size:0.7em;">[<a href="{% url "election@trustee" election_uuid=election.uuid trustee_uuid=trustee.uuid %}">back to trustee home</a>]</span></h2>
+  <h2 class="title">{{election.name}} &mdash; Confiador {{trustee.name}} &mdash; Verificar Chave Secreta <span style="font-size:0.7em;">[<a href="{% url "election@trustee" election_uuid=election.uuid trustee_uuid=trustee.uuid %}">voltar para a página inicial do confiador</a>]</span></h2>
 
 <p>
-Your public key fingerprint is: <b>{{trustee.public_key_hash}}</b>
+Sua impressão digital da chave pública é: <b>{{trustee.public_key_hash}}</b>
 </p>
 
 <div id="loading">
-loading crypto functions...
+carregando funções criptográficas...
 </div>
 
 <div id="input" style="display:none;">
 <p>
-To verify that you have the right secret key, paste it here:
+Para verificar se você tem a chave secreta correta, cole-a aqui:
 <p>
 
 <form onsubmit="check_sk(this.secret_key.value); this.secret_key.value=''; return false;">
 <textarea name="secret_key" cols="60" rows ="5" wrap="soft" style="height: 25em;">
 </textarea>
 <br />
-<input type="submit" value="check" />
+<input type="submit" value="verificar" />
 </form>
 </div>
 
 <div id="processing" style="display:none;">
-checking your secret key...
+verificando sua chave secreta...
 </div>
 
 <div id="result">

@@ -1,5 +1,5 @@
 {% extends TEMPLATE_BASE %}
-{% block title %}Confirm Vote{% endblock %}
+{% block title %}Confirmar Voto{% endblock %}
 
 {% block content %}
 <script language="javascript">
@@ -24,7 +24,7 @@ window.onbeforeunload = function(evt) {
     evt = window.event;
   }
   
-  var message = "You have not yet cast your ballot! Make sure to complete the voting process if you want your vote to count.";
+  var message = "Você ainda não enviou sua cédula! Certifique-se de completar o processo de votação se você quiser que seu voto seja contabilizado.";
 
   if (evt) {
     evt.returnValue = message;
@@ -34,15 +34,15 @@ window.onbeforeunload = function(evt) {
 };
 
 </script>
-<h1>Don't go yet!<br />Your ballot has not yet been cast.</h1>
+<h1>Não saia ainda!<br />Sua cédula ainda não foi enviada.</h1>
 
 <div id="waiting_div">
-    Verifying and Casting your ballot<br />
+    Verificando e Enviando sua cédula<br />
     <img src="/static/helios/loading.gif" />
 </div>
 
 <div style="word-wrap: break-word; width: 90vw;">
-Your ballot tracker is:<br>
+Seu rastreamento de voto é:<br>
 <b>{{vote_fingerprint}}</b>
 <br><br>
 </div>
@@ -63,16 +63,16 @@ Your ballot tracker is:<br>
 {% else %}
 
 {% if user %}
-<h1>Sorry!<h1>
-<b>Sorry, you are <em>
+<h1>Desculpe!<h1>
+<b>Desculpe, você é <em>
   {% if election.openreg %}
-    <u>not eligible</u></em> for this election.
+    <u>ineligível</u></em> para esta eleição.
   {% else %}
-    not registered</em> for this election, and registration is closed.
+    não registrado</em> para esta eleição, e o registro está fechado.
   {% endif %}
   </b><br /></p>
 <p>
-    [<a href="{% url "election@view" election.uuid %}">return to the main election page</a>]
+    [<a href="{% url "election@view" election.uuid %}">voltar para a página da eleição</a>]
 </p>
 {% else %}
 <p>
@@ -80,19 +80,19 @@ Your ballot tracker is:<br>
 
   {% if election.eligibility %}
   {% else %}
-   This election is open to <em>anyone</em>, so log in with your preferred account.
+   Esta eleição é aberta para <em>qualquer pessoa</em>, então faça login com sua conta preferida.
   {% endif %}
 
 {% else %}
-  This election is only open to <em>registered voters</em>, so log in with
-  the same account you registered with.
+  Esta eleição é aberta apenas para <em>eleitores registrados</em>, então faça login com
+  a mesma conta que você se registrou.
 {% endif %}
 </p>
 
 {{login_box|safe}}
 
 <br />
-Don't worry, we'll remember your ballot while you log in.
+Não se preocupe, nós lembraremos sua cédula enquanto você faz login.
 {% endif %}
 
 {% endif %}

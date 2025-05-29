@@ -1,14 +1,14 @@
 {% extends TEMPLATE_BASE %}
 
 {% block content %}
-  <h2 class="title">{{election.name}} &mdash; Bulk Upload Voters <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">back to election</a>]</span></h2>
+  <h2 class="title">{{election.name}} &mdash; Upload de Eleitores em Massa <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">voltar para a eleição</a>]</span></h2>
 
 <form method="post" action="" id="upload_form" enctype="multipart/form-data">
 <p>
-    If you would like to specify your list of voters by name and email address,<br />
-    you can bulk upload a list of such voters here.<br /><br />
+    Se você quiser especificar sua lista de eleitores por nome e endereço de email,<br />
+    você pode carregar em massa uma lista de tais eleitores aqui.<br /><br />
 
-    Please prepare a text file of comma-separated values with the fields:
+    Por favor, prepare um arquivo de texto com valores separados por vírgula com os campos:
 </p>
 <pre>
    password,&lt;unique_id&gt;,&lt;email&gt,&lt;full name&gt;
@@ -21,7 +21,7 @@ or
 </pre>
 
 <p>
-For example:
+Por exemplo:
   </p>
   <pre>
       password,bobsmith,bob@acme.org,Bob Smith
@@ -30,7 +30,7 @@ For example:
   </pre> 
 
   <p>
-    The easiest way to prepare such a file is to use a spreadsheet program and to export as "CSV".
+    A maneira mais fácil de preparar tal arquivo é usar um programa de planilha e exportar como "CSV".
   </p>
   {% if error %}
   <div style="color: red;">{{error}}</div>
@@ -38,15 +38,15 @@ For example:
     <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
     
     <input type="file" name="voters_file" />
-    <input type="submit" value="go" />
+    <input type="submit" value="ir" />
 </form>
 
 <div id="processing">
 </div>
 
 <div id="done" style="display:none;">
-  OK, done uploading.<br />
-  You can now <a href="./manage">view the list of voters</a>.
+  OK, carregado.<br />
+  Agora você pode <a href="./manage">ver a lista de eleitores</a>.
 </div>
 
 {% endblock %}

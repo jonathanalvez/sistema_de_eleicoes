@@ -104,7 +104,7 @@ function submit_result() {
         if (result != "FAILURE") {
           $('#done_div').show();
         } else {
-          alert('verification failed, you probably used the wrong key.');
+          alert('falha na verificação, você provavelmente usou a chave errada.');
           reset();
         }
       },
@@ -131,75 +131,75 @@ function reset() {
 }
 
 </script>
-  <h2 class="title">Trustee {{trustee.name}} &mdash; Decrypt Result for {{election.name}}</h2>
+  <h2 class="title">Confiador {{trustee.name}} &mdash; Descriptografar Resultado para {{election.name}}</h2>
 
 <p>
-    <b>Trustee:</b> <tt>{{trustee.email}}</tt><br />
-    <b>Public Key Fingerprint:</b> <tt>{{trustee.public_key_hash}}</tt><br />
-    <b>Encrypted Tally Fingerprint:</b> <tt>{{election.encrypted_tally_hash}}</tt>
+    <b>Confiador:</b> <tt>{{trustee.email}}</tt><br />
+    <b>Impressão Digital da Chave Pública:</b> <tt>{{trustee.public_key_hash}}</tt><br />
+    <b>Impressão Digital da Contagem Encriptada:</b> <tt>{{election.encrypted_tally_hash}}</tt>
 </p>
 
     <p>
-      The encrypted tally for your election has been computed.<br />
-      Now it's time to compute and submit your partial decryption.
+      A contagem encriptada para sua eleição foi computada.<br />
+      Agora é hora de computar e enviar sua parcial descriptografia.
     </p>
 
     <p>
-      This process is performed in two steps.<br /><br />
-      <u>First</u>, your secret key is used to decrypt the tally <em>inside</em> your browser, without connecting to the network.<br />
-      You can choose to take your browser "offline" for this step, if you'd like.<br /><br />
-      <u>Second</u>, once your decryption factors have been computed, your browser will need to be "online" to submit them to the server.<br />
-      If you'd like, you can compute your decryption factors, copy them to your clipboard, restart your browser, and<br />
-      skip to the second step so that your browser is never online when you enter your secret key.
+      Este processo é realizado em duas etapas.<br /><br />
+      <u>Primeiro</u>, sua chave secreta é usada para descriptografar a contagem <em>dentro</em> do seu navegador, sem conectar à rede.<br />
+      Você pode escolher fazer seu navegador "offline" para esta etapa, se quiser.<br /><br />
+      <u>Segundo</u>, uma vez que seus fatores de descriptografia tenham sido computados, seu navegador precisará estar "online" para enviá-los ao servidor.<br />
+      Se você quiser, você pode computar seus fatores de descriptografia, copiá-los para a área de transferência, reiniciar seu navegador, e<br />
+      pular para a segunda etapa para que seu navegador nunca esteja online quando você inserir sua chave secreta.
     </p>
     
   <div id="sk_section" style="display:none;">
 
       <form onsubmit="return false;">
-          <h3>FIRST STEP: enter your secret key</h3>
+          <h3>PRIMEIRA ETAPA: insira sua chave secreta</h3>
           <textarea id="sk_textarea" cols="60" rows="5" style="height: 25em;"></textarea>
       </form>
       <p id="tally_section">
-          <button onclick="do_tally();">Generate partial decryption</button>
+          <button onclick="do_tally();">Computar parcial descriptografia</button>
       </p>
 
       <p id="skip_to_second_step_instructions">
-        <a href="javascript:skip_to_second_step();">skip to the second step</a><br />
-        (you need to have already computed your decryption factors.)
+        <a href="javascript:skip_to_second_step();">pular para a segunda etapa</a><br />
+        (você precisa ter já computado seus fatores de descriptografia.)
       </p>
   </div>
   
   <div id="waiting_div">
-      Generating partial decryption factors and proofs...<br />
+      Computando fatores de descriptografia e provas parciais...<br />
       <img src="/static/helios/loading.gif" />
   </div>
 
   <div id="waiting_submit_div">
-      Submitting and checking your decryption factors and proofs...<br />
+      Enviando e verificando seus fatores de descriptografia e provas...<br />
       <img src="/static/helios/loading.gif" />
   </div>
   
   <div id="result_div">
-      <h3>SECOND STEP: upload your partial decryption</h3>
+      <h3>SEGUNDA ETAPA: enviar sua parcial descriptografia</h3>
       <p id="first-step-success" style="display: none;">
-          Your partial decryption factors and proofs have been generated below.<br />
-          Your secret key has been cleared from memory.<br />
-          When you're ready, you can submit this result to the server.
+          Seus fatores de descriptografia e provas parciais foram gerados abaixo.<br />
+          Sua chave secreta foi limpa da memória.<br />
+          Quando você estiver pronto, você pode enviar este resultado para o servidor.
       </p>
-      Your partial decryption:<br />
+      Sua parcial descriptografia:<br />
       <p>
           <textarea id="result_textarea" cols="60" rows="5" wrap="soft" style="height: 25em;"></textarea>
-          <button onclick="submit_result();">Upload decryption factors to server</button>
+          <button onclick="submit_result();">Enviar fatores de descriptografia para o servidor</button>
       </p>
-      <p><a href="javascript:reset()">reset and restart decryption process</a></p>
+      <p><a href="javascript:reset()">reiniciar e reiniciar o processo de descriptografia</a></p>
   </div>
   
   <div id="done_div">
-      Done! <a href="{% url "election@view" election.uuid %}">Back to election</a>
+      Pronto! <a href="{% url "election@view" election.uuid %}">voltar para a eleição</a>
   </div>
   
   <div id="error_div">
-      Error: your secret key was likely incorrect.
+      Erro: sua chave secreta provavelmente está incorreta.
   </div>
 
   <div id="applet_div">

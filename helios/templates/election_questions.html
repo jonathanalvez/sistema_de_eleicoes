@@ -1,8 +1,8 @@
 {% extends "helios/templates/cryptobase.html" %}
 
-{% block title %}Questions for {{election.name}}{% endblock %}
+{% block title %}Questões para {{election.name}}{% endblock %}
 {% block content %}
-  <h3 class="title">{{election.name}} &mdash; Questions <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">back to election</a>]</span></h3>
+  <h3 class="title">{{election.name}} &mdash; Questões <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">voltar para a eleição</a>]</span></h3>
 
   <script language="javascript">
 {% if election.questions %}
@@ -27,7 +27,7 @@
   function save_questions(callback) {
       $.post('./save_questions', {'questions_json' : $.toJSON(QUESTIONS), 'csrf_token': CSRF_TOKEN}, function(result) {
           if (result == "FAILURE") {
-            alert("The questions could not be saved. Please check that the URLs you entered are either http:// or https://");
+            alert("As questões não puderam ser salvas. Por favor, verifique se as URLs que você inseriu são http:// ou https://");
           } else {
             callback();
           }

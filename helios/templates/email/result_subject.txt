@@ -1,1 +1,1 @@
-Tally Released - {{custom_subject|safe}}
+Apuração Divulgada - {{custom_subject|safe}}

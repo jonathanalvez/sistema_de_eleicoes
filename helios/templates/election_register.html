@@ -5,19 +5,19 @@
 
 {% if user %}
 <p>
-    You are currently logged in as {{user.user_id}} [{{user.user_type}}]
+    Você está atualmente logado como {{user.user_id}} [{{user.user_type}}]
 </p>
 {% if voter %}
 <p>
-    You are currently registered for this election.
+    Você está atualmente registrado para esta eleição.
 </p>
 {% else %}
 <p>
-    You are <em>not</em> registered for this election.
+    Você não está registrado para esta eleição.
 </p>
 
 <form method="post" action="{% url "election@register" election.uuid %}">
-<input type="submit" value="register!" />
+<input type="submit" value="registrar!" />
 </form>
 {% endif %}
 

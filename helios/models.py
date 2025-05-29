@@ -399,8 +399,8 @@ class Election(HeliosModel):
 
     if self.voter_set.count() == 0 and not self.openreg:
       issues.append({
-          "type" : "voters",
-          "action" : 'enter your voter list (or open registration to the public)'
+          "type" : "eleitores",
+          "action" : 'insira sua lista de eleitores (ou abra o registro para o público)'
           })
 
     return issues
@@ -410,7 +410,7 @@ class Election(HeliosModel):
 
   def compute_tally(self):
     """
-    tally the election, assuming votes already verified
+    apurar a eleição, assumindo que os votos já foram verificados
     """
     tally = self.init_tally()
     for voter in self.voter_set.exclude(vote=None):
@@ -424,7 +424,7 @@ class Election(HeliosModel):
 
   def ready_for_decryption_combination(self):
     """
-    do we have a tally from all trustees?
+    temos uma contagem de todos os tesoureiros?
     """
     for t in Trustee.get_by_election(self):
       if not t.decryption_factors:
@@ -434,7 +434,7 @@ class Election(HeliosModel):
 
   def release_result(self):
     """
-    release the result that should already be computed
+    liberar o resultado que já deve ter sido computado
     """
     if not self.result:
       return
@@ -443,7 +443,7 @@ class Election(HeliosModel):
 
   def combine_decryptions(self):
     """
-    combine all of the decryption results
+    combinar todos os resultados de decifração
     """
 
     # gather the decryption factors
@@ -458,7 +458,7 @@ class Election(HeliosModel):
 
   def generate_voters_hash(self):
     """
-    look up the list of voters, make a big file, and hash it
+    procurar a lista de eleitores, fazer um grande arquivo e gerar um hash
     """
 
     # FIXME: for now we don't generate this voters hash:
@@ -481,15 +481,15 @@ class Election(HeliosModel):
 
   def set_eligibility(self):
     """
-    if registration is closed and eligibility has not been
-    already set, then this call sets the eligibility criteria
-    based on the actual list of voters who are already there.
+    se o registro estiver fechado e a elegibilidade ainda não tiver sido
+    definida, então esta chamada define os critérios de elegibilidade
+    com base na lista real de eleitores que já estão cadastrados.
 
-    This helps ensure that the login box shows the proper options.
+    Isso ajuda a garantir que a caixa de login mostre as opções corretas.
 
-    If registration is open but no voters have been added with password,
-    then that option is also canceled out to prevent confusion, since
-    those elections usually just use the existing login systems.
+    Se o registro estiver aberto mas nenhum eleitor tiver sido adicionado com senha,
+    então essa opção também é cancelada para evitar confusão, já que
+    essas eleições geralmente usam apenas os sistemas de login existentes.
     """
 
     # don't override existing eligibility
