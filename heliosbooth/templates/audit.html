@@ -1,36 +1,60 @@
-
-<h3>Your audited ballot</h3>
+<h3>Seu voto auditado</h3>
 
 <p>
-<b><u>IMPORTANT</u></b>: this ballot, now that it has been audited, <em>will not be tallied</em>.<br />
-To cast a ballot, you must click the "Back to Voting" button below, re-encrypt it, and choose "cast" instead of "audit."
+  <b><u>IMPORTANTE</u></b
+  >: este voto, agora que foi auditado, <em>não será contado</em>.<br />
+  Para votar, você deve clicar no botão "Voltar para Votação" abaixo,
+  re-criptografá-lo e escolher "votar" em vez de "auditar."
 </p>
 
 <p>
-<b>Why?</b> Helios prevents you from auditing and casting the same ballot to provide you with some protection against coercion.
+  <b>Por quê?</b> O Helios impede que você auditie e vote no mesmo voto para
+  fornecer alguma proteção contra a coerção.
 </p>
 
 <p>
-<b>Now what?</b> <a onclick="$('#audit_trail').select(); return false;" href="#">Select your ballot audit info</a>, copy it to your clipboard, then use the <a target="_blank" href="single-ballot-verify.html?election_url={$T.election_url}">ballot verifier</a> to verify it.<br />
-Once you're satisfied, click the "back to voting" button to re-encrypt and cast your ballot.
+  <b>E agora?</b>
+  <a onclick="$('#audit_trail').select(); return false;" href="#"
+    >Selecione as informações de auditoria do seu voto</a
+  >, copie para sua área de transferência, depois use o
+  <a
+    target="_blank"
+    href="single-ballot-verify.html?election_url={$T.election_url}"
+    >verificador de voto</a
+  >
+  para verificá-lo.<br />
+  Depois de verificar, clique no botão "voltar para votação" para
+  re-criptografar e votar.
 </p>
 
 <form action="#">
-<textarea name="audit_trail" id="audit_trail" cols="80" rows="10" wrap="soft">
+  <textarea name="audit_trail" id="audit_trail" cols="80" rows="10" wrap="soft">
 {$T.audit_trail}
-</textarea>
-<br /><br />
-Before going back to voting,<br />
-you can post this audited ballot to the Helios tracking center so that others might double-check the verification of this ballot.
-<br /><br />
-<b>Even if you post your audited ballot, you must go back to voting and choose "cast" if you want your vote to count.</b>
-<br /><br />
-<button onclick="BOOTH.reset_ciphertexts();BOOTH.seal_ballot(); return false;" class="pretty">back to voting</button>
-&nbsp; &nbsp;&nbsp;
-<button onclick="$(this).attr('disabled', 'disabled');BOOTH.post_audited_ballot(); return false;" id="post_audited_ballot_button" class="pretty" style="font-size:0.8em;">post audited ballot to tracking center</button>
-
+</textarea
+  >
+  <br /><br />
+  Antes de voltar para a votação,<br />
+  você pode postar este voto auditado para o centro de rastreamento do Helios
+  para que outros possam verificar a verificação deste voto.
+  <br /><br />
+  <b
+    >Mesmo se você postar seu voto auditado, você deve voltar para a votação e
+    escolher "votar" se quiser que seu voto seja contado.</b
+  >
+  <br /><br />
+  <button
+    onclick="BOOTH.reset_ciphertexts();BOOTH.seal_ballot(); return false;"
+    class="pretty"
+  >
+    voltar para votação
+  </button>
+  &nbsp; &nbsp;&nbsp;
+  <button
+    onclick="$(this).attr('disabled', 'disabled');BOOTH.post_audited_ballot(); return false;"
+    id="post_audited_ballot_button"
+    class="pretty"
+    style="font-size: 0.8em"
+  >
+    postar voto auditado para o centro de rastreamento
+  </button>
 </form>
-
-
-
-

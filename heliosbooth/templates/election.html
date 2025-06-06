@@ -1,24 +1,31 @@
-
 <div id="questions_div">
-<p>
-    To vote, follow these steps:
-<p>
-    
-<ol>
-    <li> <b>Select</b> your preferred options.</li>
-<br />
+  <p>Para votar, siga estes passos:</p>
 
-    <li> <b>Review</b> your choices, which are then encrypted.</li>
-<br />
+  <p></p>
 
-    <li> <b>Submit</b> your encrypted ballot and authenticate to verify your eligibility.</li>
+  <ol>
+    <li><b>Selecione</b> suas opções preferidas.</li>
+    <br />
 
-</ol>
+    <li><b>Revise</b> suas opções, que são criptografadas.</li>
+    <br />
 
-<div align="center"><button onclick="BOOTH.show_question(0);">Start</button></div>
+    <li>
+      <b>Envie</b> seu voto criptografado e autentique-se para verificar sua
+      elegibilidade.
+    </li>
+  </ol>
+
+  <div align="center">
+    <button onclick="BOOTH.show_question(0);">Iniciar</button>
+  </div>
 </div>
 
 <p>
-  You can <a target="_new" href="mailto:{$T.election_metadata.help_email}?subject=help%20with%20election%20{$T.election.name}&body=I%20need%20help%20with%20election%20{$T.election.uuid}">email for help</a>.
+  Você pode
+  <a
+    target="_new"
+    href="mailto:{$T.election_metadata.help_email}?subject=help%20with%20election%20{$T.election.name}&body=I%20need%20help%20with%20election%20{$T.election.uuid}"
+    >enviar um email para ajuda</a
+  >.
 </p>
-
