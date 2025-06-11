@@ -420,7 +420,7 @@
           };
 
           BOOTH.show_processing_before = function (str_to_execute) {
-            $("#processing_div").html("<h3 align='center'>Processing...</h3>");
+            $("#processing_div").html("<h3 align='center'>Processando...</h3>");
             BOOTH.show($("#processing_div"));
 
             // add a timeout so browsers like Safari actually display the processing message
@@ -563,7 +563,7 @@
 
             if (BOOTH.total_cycles_waited > 250) {
               alert(
-                "there appears to be a problem with the encryption process.\nPlease email help@heliosvoting.org and indicate that your encryption process froze at " +
+                "Parece que há um problema com o processo de criptografia.\nPor favor, envie um email para help@heliosvoting.org e indique que seu processo de criptografia congelou em " +
                   percentage_done +
                   "%",
               );
@@ -664,7 +664,7 @@
               { audited_ballot: BOOTH.audit_trail },
               function (result) {
                 alert(
-                  'This audited ballot has been posted.\nRemember, this vote will only be used for auditing and will not be tallied.\nClick "back to voting" and cast a new ballot to make sure your vote counts.',
+                  'Este voto auditado foi postado.\nLembre-se, este voto será usado apenas para auditoria e não será contado.\nClique em "voltar para votação" e vote novamente para garantir que seu voto seja contado.',
                 );
               },
             );
@@ -697,7 +697,7 @@
 
           BOOTH.show_receipt = function () {
             UTILS.open_window_with_content(
-              "Your ballot tracker for " +
+              "Seu rastreador de voto para " +
                 BOOTH.election.name +
                 ": " +
                 BOOTH.encrypted_ballot_hash,
@@ -712,27 +712,34 @@
           <div id="progress_div" style="display: none">
             <table>
               <tr>
-                <td id="progress_1">(1) Select</td>
-                <td id="progress_2">(2) Review</td>
-                <td id="progress_3">(3) Submit</td>
+                <td id="progress_1">(1) Selecionar</td>
+                <td id="progress_2">(2) Revisar</td>
+                <td id="progress_3">(3) Enviar</td>
               </tr>
             </table>
           </div>
+          <div style="margin-top: 30px">
+            <span style="color: red">[ATENÇÃO]</span> Clique no link para ver a
+            composição da Chapa antes de votar
+            <a target="_blank" href="https://satedsc.org/eleicoes-satedsc-2025/"
+              >https://satedsc.org/eleicoes-satedsc-2025/</a
+            >
+          </div>
           <div id="election_div" class="panel">
-            <h3>Checking capabilities and loading election booth...</h3>
+            <h3>Verificando capacidades e carregando a cabine de votação...</h3>
             <div align="center">
-              <img src="loading.gif" /><br />This may take up to 10 seconds
+              <img src="loading.gif" /><br />Isso pode levar até 10 segundos
             </div>
           </div>
 
           <div id="error_div" class="panel" style="display: none">
-            <h3>There's a problem</h3>
+            <h3>Ocorreu um problema</h3>
             <p>
-              It appears that your browser does not have Java enabled. Helios
-              needs Java to perform encryption within the browser.
+              Parece que seu navegador não tem Java habilitado. O Helios precisa
+              de Java para realizar a criptografia no navegador.
             </p>
             <p>
-              You may be able to install Java by visiting
+              Você pode instalar Java visitando
               <a target="_new" href="http://java.com">java.com</a>.
             </p>
           </div>
@@ -740,12 +747,12 @@
           <div id="question_div" class="panel"></div>
 
           <div id="processing_div" class="panel" style="display: none">
-            <h3 align="center">Processing....</h3>
+            <h3 align="center">Processando...</h3>
           </div>
 
           <div id="encrypting_div" class="panel" style="display: none">
             <h3 align="center">
-              Helios is now encrypting your ballot<br />
+              O Helios está criptografando seu voto<br />
               <img src="encrypting.gif" />
               <span
                 style="font-size: 0.7em; display: none"

@@ -11,7 +11,7 @@ Questão #{$T.question$index + 1}: {$T.question.short_name}<br>
 <div style="margin-left: 15px;">&#x2713; <b>{$T.choice}</b></div>
 {#/for}
 {#if $T.choices[$T.question$index].length < $T.question.max}
-[{$T.choices[$T.question$index].length} selections out of possible {$T.question.min}-{$T.question.max}]<br />
+[{$T.choices[$T.question$index].length} seleções de um possível {$T.question.min}-{$T.question.max}]<br />
 {#/if}
 [<a onclick="BOOTH.show_question({$T.question$index}); return false;" href="#">alterar</a>]
 {#if !$T.question$last}<br><br>{#/if}
