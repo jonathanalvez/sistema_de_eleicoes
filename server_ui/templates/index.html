@@ -9,8 +9,7 @@
 <div class="row" style="margin-top: 40px;">
   <div class="large-8 columns large-centered text-center">
     <img src="{{ settings.MAIN_LOGO_URL }}" style="max-width: 220px; margin-bottom: 20px;" />
-    <h2 style="margin-bottom: 10px;">Bem-vindo ao sistema de eleições da <b>{{ settings.SITE_TITLE }}</b></h2>
-    <p style="font-size: 1.3em; color: #444;">{{settings.WELCOME_MESSAGE|safe}}</p>
+    <h2 style="margin-bottom: 10px;">Bem-vindo ao sistema de Eleições do <b>{{ settings.SITE_TITLE }}</b></h2>
     {% if elections|length == 0 %}
       <h4 style="margin-top: 30px; color: #c00;">Nenhuma eleição disponível no momento</h4>
     {% endif %}
