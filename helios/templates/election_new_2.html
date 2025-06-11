@@ -53,7 +53,7 @@ $(document).ready(function() {
 {% if election_type == "one" %}
   <b>Uma eleição gerenciada por você, o único administrador</b>.
 {% else %}
-<b>Uma eleição gerenciada por vários tesoureiros</b>.
+<b>Uma eleição gerenciada por vários Auditores</b>.
 {% endif %}
 {% endif %}
   <form class="prettyform" action="{% url "helios.views.election_new_3" %}" method="POST" id="create_election_form" onsubmit="return before_create();">

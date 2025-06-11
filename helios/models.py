@@ -424,7 +424,7 @@ class Election(HeliosModel):
 
   def ready_for_decryption_combination(self):
     """
-    temos uma contagem de todos os tesoureiros?
+    temos uma contagem de todos os auditores?
     """
     for t in Trustee.get_by_election(self):
       if not t.decryption_factors:

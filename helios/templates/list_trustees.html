@@ -3,10 +3,10 @@
 {% block title %}Trustees for {{election.name}}{% endblock %}
 
 {% block content %}
-  <h3 class="title">{{election.name}} &mdash; Confiadores <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">voltar para a eleição</a>]</span></h3>
+  <h3 class="title">{{election.name}} &mdash; Auditores <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">voltar para a eleição</a>]</span></h3>
 
 <p>
-    Os tesoureiros são responsáveis por descriptografar o resultado da eleição.<br />
+    Os auditores são responsáveis por descriptografar o resultado da eleição.<br />
     Cada confiador gera um par de chaves e envia a parte pública para o Helios.<br />
     Quando for hora de descriptografar, cada confiador precisa fornecer sua chave secreta.
 </p>
@@ -15,13 +15,13 @@
 
 <p>
   O Helios é automaticamente seu primeiro confiador e lidará com a geração de seu par de chaves e descriptografia automaticamente.<br />
-  Você pode adicionar tesoureiros adicionais se quiser, e até mesmo remover o confiador do Helios.<br />
+  Você pode adicionar auditores adicionais se quiser, e até mesmo remover o confiador do Helios.<br />
   No entanto, recomendamos que você faça isso apenas se tiver um entendimento sólido do papel do confiador.
 </p>
 
 {% if admin_p %}
 <p>
-    [ <a onclick="return(confirm('Adicionar seu próprio confiador requer um pouco mais de trabalho para computar a eleição.\nVocê precisará ter tesoureiros gerando pares de chaves e protegendo sua chave secreta.\n\nSe você não está certo do que isso significa, nós recomendamos\nclicar em Cancelar e deixar o Helios computar a eleição para você.'));" href="{% url "election@trustees@new" election.uuid %}">adicionar um confiador</a> ]
+    [ <a onclick="return(confirm('Adicionar seu próprio confiador requer um pouco mais de trabalho para computar a eleição.\nVocê precisará ter auditores gerando pares de chaves e protegendo sua chave secreta.\n\nSe você não está certo do que isso significa, nós recomendamos\nclicar em Cancelar e deixar o Helios computar a eleição para você.'));" href="{% url "election@trustees@new" election.uuid %}">adicionar um confiador</a> ]
 </p>
 {% if not election.has_helios_trustee %}
 <p>

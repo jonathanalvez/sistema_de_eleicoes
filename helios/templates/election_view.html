@@ -61,7 +61,7 @@ esta {{election.election_type}} não está em destaque na página inicial.
 &nbsp;&nbsp;|&nbsp;&nbsp;
 <a href="{% url "election@voters@list-pretty" election.uuid %}">votantes &amp; boletins</a>
 &nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="{% url "election@trustees@view" election.uuid %}">tesoureiros ({{trustees|length}})</a>
+<a href="{% url "election@trustees@view" election.uuid %}">auditores ({{trustees|length}})</a>
 </p>
 
 {% if admin_p %}
@@ -112,7 +112,7 @@ Recarregue esta página em alguns minutos.
 {% else %}
 <a href="{% url "election@compute-tally" election.uuid %}">computar contagem criptografada</a><br />
 Os votos criptografados serão combinados em uma contagem criptografada. Uma vez que isso for feito,<br />
-os tesoureiros serão solicitados a fornecer sua parte da descriptografia.
+os auditores serão solicitados a fornecer sua parte da descriptografia.
 {% endif %}
 {% else %}
 
@@ -127,17 +127,17 @@ Uma vez que você liberar o resultado, ele será visível para todos.
 {% if election.num_trustees == 1 %}
 computar resultados
 {% else %}
-combinar descriptografias dos tesoureiros e computar resultados
+combinar descriptografias dos auditores e computar resultados
 {% endif %}
 </a><br />
 {% if election.num_trustees == 1 %}
 O resultado será computado e exibido apenas para você, o administrador.
 {% else %}
-As partes de descriptografia dos tesoureiros serão combinadas e a contagem será computada.<br />
+As partes de descriptografia dos auditores serão combinadas e a contagem será computada.<br />
 Uma vez que você fizer isso, a contagem será visível apenas para você, o administrador.
 {% endif %}
 {% else %}
-<a href="{% url "election@trustees@view" election.uuid %}">tesoureiros (para descriptografia)</a>
+<a href="{% url "election@trustees@view" election.uuid %}">auditores (para descriptografia)</a>
 {% endif %}
 
 {% endif %}
